@@ -1,0 +1,243 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+
+*{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'K2D', sans-serif;
+	color: #898989;
+}
+ul{
+	padding-left: 5px;
+}
+p{
+	line-height: 1.4em;
+	color: #898989;
+	margin-bottom: 0;
+}
+h5{
+	font-weight: 300;
+}
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Form */
+.label-form{
+	font-size: 14px;
+	color: #898989;
+}
+.input-form{
+	width: 100%;
+	border-bottom: 2px solid;
+	border-color: #ebebeb;
+	outline: none;
+	padding: 3px 15px 5px;
+	color: #898989;
+}
+.input-form:focus{
+	border-color: #00AFC6;
+}
+.input-error li{
+	list-style: none;
+	color: #e70000;
+	font-size: 15px;
+	font-weight: 600;
+}
+.create-register{
+	color: #00AFC6;
+	font-weight: 800;
+}
+
+/* Buttons */
+.btn1{
+	padding: 7px 30px 10px ;
+	background-color: transparent;
+	border: 2px solid #00AFC6 ;
+	border-radius: 30px;
+	font-weight: 600;
+	font-size: 18px;
+	color: #00AFC6;
+	transition: .4s;
+}
+.btn1:hover{
+	background-color: #00AFC6;
+	color: #fff;
+}
+
+
+/* Guest */
+.guest-left{
+    height: 100vh;
+    background-color:#00AFC6;
+}
+.guest-container{
+	width: 60%;
+}
+.guest-slot{
+	width: 320px;
+	padding: 0 15px;
+}
+.guest-header h1{
+	width: 60%;
+	font-size: 45px;
+	line-height: 41px;
+	color: #00AFC6;
+	font-weight: 800;
+	opacity: .2;
+}
+.aro{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	opacity: .6;
+	width:17vw;
+}
+.welcome h2{
+	width: 320px;
+	font-size: 75px;
+	color: #fff;
+	opacity: .3;
+	font-weight: 900;
+	line-height: 75px;
+	text-align: right;
+	margin-top:150px;
+}
+.brand-logo{
+	width: 290px;
+	margin-bottom: 40px;
+	display: none;
+}
+
+/* Topo */
+.topo{
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	height: 250px;
+	background-color: #00AFC6;
+	z-index: 3;
+}
+
+/* Aside */
+.aside{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 280px;
+	height: 100vh;
+	background-color: #fafafa;
+	border-radius: 0 40px 40px 0 ;
+	z-index: 5;
+}
+.aside-photo-user{
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	border: 5px solid #00AFC6;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.aside-photo-user img{
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+}
+.cargo{
+	font-weight: 800;
+	color: #00AFC6;
+	margin-top: -3px;
+}
+
+/* Topo Conteudo */
+.topo-conteudo{
+	position: fixed;
+	top: 130px;
+	left: 330px;
+	right: 50px;
+	width: auto;
+	background-color: blueviolet;
+	z-index: 10;
+}
+
+/* Conteudo */
+.conteudo{
+	position: absolute;
+	top: 250px;
+	left: 330px;
+	right: 50px;
+	width: auto;
+	background-color: rgb(198, 226, 43);
+	z-index: 1;
+}
+
+/* Navbar */
+.nav-bar{
+	margin-top: 50px;
+	width: 100%;
+}
+.nav-bar ul{
+	list-style: none;
+	padding-left: 0;
+}
+.nav-bar li{
+	padding: 10px 20px 10px 50px;
+	width: 250px;
+	border-radius: 0 30px 30px 0;
+}
+.nav-bar li:hover{
+	background-color: #fff;
+	color: #00AFC6;
+	transition: .4s;
+}
+.active{
+	background-color: #fff;
+	color: #00AFC6;
+	transition: .4s;
+}
+.active::before{
+	position: absolute;
+	content: "-";
+	left: 0;
+	margin-top: -9px;
+	width: 8px;
+	border-radius: 0 10px 10px 0;
+	height: 42px;
+	background-color: #00AFC6;
+	z-index: 2;
+}
+
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  }
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) { 
+	
+	/* Guest */
+	.guest-left{
+		display: none!important;
+	}
+	.brand-logo{
+		display: flex;
+	}
+
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+
+}
