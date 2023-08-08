@@ -1,4 +1,5 @@
 import './bootstrap';
+import $ from 'jquery';
 
 import Alpine from 'alpinejs';
 
@@ -34,3 +35,26 @@ window.onload = function(){
 		}
 	}
 }
+
+//Toggle menu
+$(document).ready(function() {
+    $('#menu, .nav-bar').click(function() {
+        $('.aside').toggleClass('slide-left');
+    });
+});
+
+//Inclui a classe active ao nav-bar
+$(document).ready(function() {
+    let uri = window.location.pathname; 
+    let segments = uri.split('/'); 
+    let page = segments[1];
+    let searchTerm = page;
+
+    $('.nav-bar li').each(function() {
+        if ($(this).text().toLowerCase().includes(searchTerm)) {
+            $(this).addClass('active');
+        }
+    });
+});
+
+  

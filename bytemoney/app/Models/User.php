@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'photo',
         'access_level_id',
         'password',
     ];
@@ -44,4 +45,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function accessLevel()
+    {
+        return $this->belongsTo(AccessLevel::class);
+    }
+
+    public function productor()
+    {
+        return $this->hasMany(Products::class);
+    }
 }

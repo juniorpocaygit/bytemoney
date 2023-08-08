@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +21,18 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('app.home');
-})->middleware(['auth', 'verified'])->name('app.home');
+Route::get('/dashboard', [HomeController::class, 'index'] )->middleware(['auth', 'verified'])->name('app.home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil.edit');
+    Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+    Route::delete('/perfil', [PerfilController::class, 'destroy'])->name('perfil.destroy');
+
+    //Access_Level
+    Route::resource('/nivel-acesso', AccessLevelController::class);
+
+    //Products
+    Route::resource('produtos', ProductsController::class);
 });
 
 require __DIR__.'/auth.php';
