@@ -8,11 +8,33 @@
     </div>
     <div class="topo-container d-flex align-items-start justify-content-between">
         <div class="topo-dados d-flex align-items-center justify-content-around">
-            <x-topo-values :title="'total de vendas'" value='5625,00'/>
+            <div class="d-flex flex-column align-items-end justify-content-center">
+                <p class="text-white">total de vendas</p>
+                <div class="value d-flex flex-row">
+                    <p class="text-white mt-2 me-1">R$</p>
+                    <h3 id="totalSalesValue" class="text-white floatValue">{{ Session::get('total_sales') }}</h3>
+                </div>
+            </div>
             <div class="dados-separator"></div>
-            <x-topo-values :title="'comissão acumulada'" value='1384,00'/>
+            <div class="d-flex flex-column align-items-end justify-content-center">
+                @if (auth()->user()->accessLevel->level == '80')
+                    <p class="text-white">valor de comissão</p>
+                @else
+                    <p class="text-white">valor a receber</p> 
+                @endif
+                <div class="value d-flex flex-row">
+                    <p class="text-white mt-2 me-1">R$</p>
+                    <h3 id="commissionValue" class="text-white floatValue">{{ Session::get('commission') }}</h3>
+                </div>
+            </div>
             <div class="dados-separator"></div>
-            <x-topo-values :title="'últimos 30d'" value='428,00'/>
+            <div class="d-flex flex-column align-items-end justify-content-center">
+                <p class="text-white">vendas últimos 30d</p>
+                <div class="value d-flex flex-row">
+                    <p class="text-white mt-2 me-1">R$</p>
+                    <h3 id="sales30dValue" class="text-white floatValue">{{ Session::get('sales30d') }}</h3>
+                </div>
+            </div>
          </div>
         <div class="topo-sign-out d-flex align-items-center justify-content-end text-white">
             <form method="POST" action="{{ route('logout') }}">

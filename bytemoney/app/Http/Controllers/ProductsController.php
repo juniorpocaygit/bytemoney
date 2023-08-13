@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Products;
+use App\Models\AfiliateProduct;
+
 class ProductsController extends Controller
 {
     /**
@@ -95,8 +100,17 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Products::find($id);
-        return view('app.products.show', ['product' => $product]);
+        $product = Products::with('afiliates')->find($id);
+
+        //returns the total number of products sold
+        $salesProduct = DB::table('sales as s')
+            ->join('products as p', 's.product_id', '=', 'p.id')
+            ->select(DB::raw('COUNT(*) AS sales_product'))
+            ->where('s.product_id', '=', $id)
+            ->groupBy('s.product_id')
+            ->first();
+
+        return view('app.products.show', ['product' => $product, 'salesProduct' => $salesProduct]);
     }
 
     /**

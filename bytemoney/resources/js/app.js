@@ -1,5 +1,4 @@
 import './bootstrap';
-import $ from 'jquery';
 
 import Alpine from 'alpinejs';
 
@@ -41,10 +40,8 @@ $(document).ready(function() {
     $('#menu, .nav-bar').click(function() {
         $('.aside').toggleClass('slide-left');
     });
-});
 
-//Inclui a classe active ao nav-bar
-$(document).ready(function() {
+    //Inclui a classe active ao nav-bar
     let uri = window.location.pathname; 
     let segments = uri.split('/'); 
     let page = segments[1];
@@ -52,9 +49,43 @@ $(document).ready(function() {
 
     $('.nav-bar li').each(function() {
         if ($(this).text().toLowerCase().includes(searchTerm)) {
-            $(this).addClass('active');
+            $(this).addClass('ativo');
         }
     });
+
+    // substitui ponto por virgula
+    $('.floatValue').each(function() {
+        var originalValue = parseFloat($(this).text());
+        var formattedValue = originalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        $(this).text(formattedValue);
+    });    
+
+    //faz o select da categoria de produtos
+    $('#category_id').change(function () {
+        var selectedCategoryId = $(this).val();
+        if (selectedCategoryId) {
+            var redirectUrl = '/produtos/categoria/' + selectedCategoryId; 
+            window.location.href = redirectUrl;
+        }
+    });
+
+    //Recarrega os valores de vendas
+    let totalSales = "{{ Session::get('total_sales') }}";
+    let sales30d = "{{ Session::get('sales30d') }}";
+    var commission = "{{ Session::get('commission') }}";
+    $('#commissionValue').val(commission);    
+    $('#totalSalesValue').val(totalSales);
+    $('#sales30dValue').val(sales30d);
+
+    //carrega o datatables
+    console.log("Iniciando DataTables");
+    $('#dataTable').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese.json" // Caminho para o arquivo de tradução
+        }
+    });
+
 });
+
 
   

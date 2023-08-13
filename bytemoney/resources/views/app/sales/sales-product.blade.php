@@ -1,8 +1,25 @@
 <x-guest-layout>
-    <div class="guest-header mb-4">
-        <h1>Cadastro</h1>
+    <div class="sale-product-header w-100 text-center d-flex justify-content-center align-items-center flex-column">
+        <div class="w-100 sale-product-text">
+            <h5>Você está comprando o produto:</h5>
+        </div>
+        <div class="sale-product-photo">
+            <img class="img-fluid" src="{{ asset('storage/img/products/'.$afiliate->afilprod->photo) }}" alt="{{$afiliate->afilprod->title}}">
+        </div>
+        <div class="sale-product-title mt-2">
+            <h4>{{$afiliate->afilprod->title}}</h4>
+        </div>
+        <div class="sale-product-price d-flex justify-content-center align-items-end mb-2">
+            <p class="pb-2">R$</p>
+            <h3>{{$afiliate->afilprod->price}}</h3>
+        </div>
     </div>
-    <form method="POST" action="{{ route('register') }}">
+    @php
+        $url = request()->url();
+        $segments = explode('/', $url);
+        $link = last($segments);
+    @endphp
+    <form method="POST" action="{{ route('sale.post', ['link' => $link]) }}">
         @csrf
 
         <!-- Name -->
@@ -18,14 +35,7 @@
             <x-text-input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-     
-        <!-- Phone Number -->
-        <div class="d-flex flex-column mt-4">
-            <x-input-label for="phone" :value="__('telefone')" />
-            <x-text-input id="phone" type="text" name="phone" :value="old('phone')"  onkeyup="mascara(this, mtel)" />
-            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-        </div>
- 
+   
         <!-- Password -->
         <div class="d-flex flex-column mt-4">
             <x-input-label for="password" :value="__('senha')" />
@@ -48,27 +58,11 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <!-- Nível de acesso -->
-        <div class="d-flex justify-content-around my-4">
-            <div>
-                <label class="small me-4">
-                    <input type="radio" name="access_level_id" value="1" checked>
-                    Produtor
-                </label>
-                <label class="small">
-                    <input type="radio" name="access_level_id" value="2">
-                    Afiliado
-                </label>
-            </div>
-
-        </div>
+      
         <div class="d-flex flex-column justify-content-center align-items-center">
             <x-primary-button class="mt-4 mb-4">
-                {{ __('criar conta') }}
+                {{ __('finalizar compra') }}
             </x-primary-button>
-            <a class="mt-1" href="{{ route('login') }}">
-                {{ __('Já possui conta? Clique aqui.') }}
-            </a>
         </div>
 
     </form>

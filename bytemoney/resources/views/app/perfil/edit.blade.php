@@ -2,7 +2,9 @@
 
 @section('titulo', 'Perfil')
 @section('topo-conteudo')
-   <h2 class="text-white mt-sm-4 mt-2 ms-sm-3 ms-4">Perfil do usuário</h2>
+    <div class="topo-fixed">
+        <h2 class="">Perfil do usuário</h2>
+    </div>
 @endsection
 @section('conteudo')
 <div class="container-fluid">

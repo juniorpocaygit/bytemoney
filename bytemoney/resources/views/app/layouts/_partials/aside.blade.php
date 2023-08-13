@@ -17,8 +17,7 @@
                         <a href="{{route('app.home')}}"><li><i class="bi bi-person"></i>Dashboard</li></a>
                         <a href="{{route('perfil.edit')}}"><li><i class="bi bi-person"></i>Perfil</li></a>
                         <a href="{{route('produtos.index')}}"><li><i class="bi bi-box-seam"></i>Produtos</li></a>
-                        <a href=""><li><i class="bi bi-people"></i>Afiliados</li></a>
-                        <a href=""><li><i class="bi bi-bar-chart"></i>Financeiro</li></a>
+                        <a href="{{route('all.afiliates')}}"><li><i class="bi bi-people"></i>Afiliados</li></a>
                         <div class="nav-sing-out">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -33,9 +32,8 @@
                     <ul>
                         <a href="{{route('app.home')}}"><li><i class="bi bi-person"></i>Dashboard</li></a>
                         <a href="{{route('perfil.edit')}}"><li><i class="bi bi-person"></i>Perfil</li></a>
-                        <a href=""><li><i class="bi bi-box-seam"></i>Produtos</li></a>
-                        <a href=""><li><i class="bi bi-people"></i>Clientes</li></a>
-                        <a href=""><li><i class="bi bi-bar-chart"></i>Financeiro</li></a>
+                        <a href="{{route('afiliate.allproducts')}}"><li><i class="bi bi-box-seam"></i>Produtos</li></a>
+                        <a href="{{route('all.clients')}}"><li><i class="bi bi-people"></i>Clientes</li></a>
                         <div class="nav-sing-out">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

@@ -2,16 +2,17 @@
 
 @section('titulo', 'Produtos')
 @section('topo-conteudo')
-    <h2 class="text-white mt-sm-4 mt-2 ms-sm-3 ms-4">Produtos</h2>
+    <div class="topo-fixed">
+        <h2>Produtos</h2>
+    </div>
 @endsection
 @section('conteudo')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="create col-md-6">
             <h2 class="mt-sm-4 mt-2 ms-sm-0 ms-4">Criar Produto</h2>
             <form method="post" action="{{ route('produtos.store') }}" enctype="multipart/form-data" class="mt-4">
                 @csrf
-
                 <select name="category_id">
                     <option>Selecione uma categoria</option>
                     @foreach ($categories as $category)

@@ -55,4 +55,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Products::class);
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Products::class, 'afiliate_products' )->withPivot(['id','link']);
+    }
+    
+    public function saleproducts()
+    {
+        return $this->belongsToMany(Products::class, 'sales' )->withPivot(['client_id', 'created_at']);
+    }
+
+    public function userproduct()
+    {
+        return $this->hasOne(Products::class);
+    }
 }

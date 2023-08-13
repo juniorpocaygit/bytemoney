@@ -2,12 +2,14 @@
 
 @section('titulo', 'Editar - Produtos')
 @section('topo-conteudo')
-    <h2 class="text-white mt-sm-4 mt-2 ms-sm-3 ms-4">Produtos</h2>
+    <div class="topo-fixed">
+        <h2>Produtos</h2>
+    </div>    
 @endsection
 @section('conteudo')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="update col-md-6">
             <h2 class="mt-sm-4 mt-2 ms-sm-0 ms-4">Editar Produto</h2>
             <form method="post" action="{{ route('produtos.update', ['produto' => $product->id]) }}" enctype="multipart/form-data" class="mt-4">
                 @csrf

@@ -28,4 +28,16 @@ class Products extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function afiliates()
+    {
+        return $this->belongsToMany(User::class, 'afiliate_products')->withPivot(['id', 'link']);
+    }
+
+    public function saleuser()
+    {
+        return $this->belongsToMany(Products::class, 'sales' )->withPivot(['client_id', 'created_at']);
+    }
+
+    
 }
