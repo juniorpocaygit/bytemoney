@@ -40,7 +40,7 @@ class AfiliateProductsController extends Controller
 
     public function myafiliate(){
 
-        $myProducts = User::find(auth()->user()->id)->products;     
+        $myProducts = User::find(auth()->user()->id)->products;
         $categories = Category::all();
         return view('app.afiliate.myproducts', ['myProducts' => $myProducts, 'categories' => $categories]);
         

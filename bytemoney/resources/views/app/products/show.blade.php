@@ -2,7 +2,9 @@
 
 @section('titulo', 'Produtos')
 @section('topo-conteudo')
-    <h2>Produtos</h2>
+    <div class="topo-fixed">
+        <h2>Produtos</h2>
+    </div>
 @endsection
 @section('conteudo')
 <div class="container-fluid">
@@ -48,18 +50,33 @@
                                 @endif                            
                             </div>
                         </div>
-                        <h4 class="mb-3">{{$product->category->name}}</h4>                        
-                        @if (auth()->user()->accessLevel->level == '80' && $product->afiliates->isEmpty() ) 
-                            <a href="{{route('afiliate.products', ['id'=> $product->id])}}"><x-secondary-button>{{ __('afiliar-se') }}</x-secondary-button></a>  
-                        @else
-                            <form id="form_{{$product->afiliates->first()->pivot->id}}" action="{{route('desfiliate.products', ['id'=>$product->afiliates->first()->pivot->id])}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#" onclick="document.getElementById('form_{{$product->afiliates->first()->pivot->id}}').submit()"><x-button-danger>{{ __('desafiliar-se') }}</x-button-danger></a>
-                            </form>
-                            <a href="{{ url('/vendas/'.$product->afiliates->first()->pivot->link)}}" target="blank">
-                                <h4 class="mt-3"><span class="sale-link">Link de venda</span></h4>
-                            </a>
+                        <h4 class="mb-3">{{$product->category->name}}</h4>                   
+                       
+
+                        @if (auth()->user()->accessLevel->level != '90')
+                            @php
+                                $id = null;
+                                $link = null;
+                                foreach ($product->afiliates as $affiliate) {
+                                    if ($affiliate->pivot->user_id == auth()->user()->id && $affiliate->pivot->products_id == $product->id) {
+                                        $id = $affiliate->pivot->id;
+                                        $link = $affiliate->pivot->link;
+                                    }
+                                }
+                            @endphp
+
+                            @if ($id && $link)
+                                <form id="form_{{$id}}" action="{{route('desfiliate.products', ['id' => $id])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="#" onclick="document.getElementById('form_{{$id}}').submit()"><x-button-danger>{{ __('desafiliar-se') }}</x-button-danger></a>
+                                </form>
+                                <a href="{{ url('/vendas/'.$link)}}" target="blank">
+                                    <h4 class="mt-3"><span class="sale-link">Link de venda</span></h4>
+                                </a>
+                            @else    
+                                <a href="{{route('afiliate.products', ['id' => $product->id])}}"><x-secondary-button>{{ __('afiliar-se') }}</x-secondary-button></a>
+                            @endif                           
                         @endif
                     </div>                  
                 </div>

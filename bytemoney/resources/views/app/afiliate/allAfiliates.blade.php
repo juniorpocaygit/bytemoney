@@ -4,7 +4,7 @@
 @section('topo-conteudo')
     <div class="topo-fixed">
       <h2>Lista de Afiliados</h2>
-  </div>
+    </div>
 @endsection
 @section('conteudo')
 @if ($afiliateInfo->isEmpty()) 
